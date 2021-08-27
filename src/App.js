@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Message } from './components/Message';
+
+const warningTxt = 'Внимание, вы не авторизованы. Опции ограниченны'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Message text={warningTxt}/>
     </div>
   );
 }
+// const message = 'This is first task with react course';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Message mess={ message }/>
+//   </React.StrictMode>,
+//   document.getElementsByClassName('App')
+// );
+
+
+// Message(message)
 
 export default App;
