@@ -43,12 +43,9 @@ function App() {
     event.preventDefault()
     // Отчищаю поле инпута при отправке формы
     setMessage('')
-  }
-  
-  const handleClick = () => {
-    // При клике добавляю в массив новый объект сообщения
     setMessageList(prevMessageList => [...prevMessageList, {text: message, author: 'User'}])
   }
+
 
 
   return (
@@ -57,7 +54,7 @@ function App() {
 
         <form  className="formBlock" onSubmit={saveMessages}>
           <input className="inputMessage" onChange={handleText} value={message}></input>
-          <button className="btnSendMessage" onClick={handleClick}>SEND</button>
+          <button className="btnSendMessage">SE1ND</button>
         </form>
 
         <div className="textSpace">
