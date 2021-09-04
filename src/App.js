@@ -1,7 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 import { Message } from './components/Message';
+import { Chats } from './components/Chats';
+
+import { TextField } from "@material-ui/core";
 
 function App() {
 
@@ -15,51 +18,79 @@ function App() {
     'Tema wrote this homework for two days >:|'
   ];
 
-  // Неожиданный для меня эффект получился благодаря этой записи
-  // Если таймаута не записывать в эту переменную и нажать много раз кнопку отправки сообщения,
-  // То в стеке вызовов будет много таймаутов
-  // Но всё исправляет запись интервала в перменную
-  // Правда, появился какой-то варн, но это издержки профессии)
-  // В продакшен!
-  let answerTimeout = undefined
+  const chatsList = [
+    'Bot',
+    'John',
+    'Sveta',
+    'Richard'
+  ]
+
+
+  const timer = useRef()
+  const inputRef = useRef()
+
+
+  useEffect(() => {
+    inputRef.current?.focus(); // Фокус на инпуте при рендере
+  }, [])
 
   useEffect(() => {
     if (messageList[messageList.length - 1]?.author === 'User') {
       // Таймер для ответа бота с генерацией случайного ответа из массива ответов)
-      answerTimeout = setTimeout(() => {
-        setMessageList((prevMessages) => [...prevMessages, { text: answerBot[Math.floor(Math.random() * (6 - 0)) + 0], author: 'Bot'}])
+      timer.current = setTimeout(() => {
+        setMessageList((prevMessages) => [...prevMessages, {
+          text: answerBot[Math.floor(Math.random() * (6 - 0)) + 0],
+          author: 'Bot',
+          id: `mess-${Date.now()}`
+        }])
       }, 1500);
-    }
-    return () => {
-      clearTimeout(answerTimeout)
-    }
+      return () => {
+        clearTimeout(timer.current)
+      }
+    } 
+
   }, [messageList, answerBot])
 
   const handleText = (event) => { 
-    setMessage(event.target.value)
+    setMessage(event.target.value) // Контролируемый input
   }
 
-  const saveMessages = (event) => {
+  
+
+  const submitMessage = useCallback((event) => {
+    inputRef.current?.focus(); // Фокус на инпуте после клика
     event.preventDefault()
-    // Отчищаю поле инпута при отправке формы
-    setMessage('')
-    setMessageList(prevMessageList => [...prevMessageList, {text: message, author: 'User'}])
-  }
+    setMessage('') // Отчищаю поле инпута при отправке формы
+    // Добавляю в массив новое сообщение
+    setMessageList(prevMessageList => [...prevMessageList, {
+      text: message, 
+      author: 'User', 
+      id: `mess-${Date.now()}`
+    }])
+  }, [message])
 
 
 
   return (
-    <div className="App warningBlock"> 
+    <div className="App container"> 
       <div className="wrapperForm">
 
-        <form  className="formBlock" onSubmit={saveMessages}>
-          <input className="inputMessage" onChange={handleText} value={message}></input>
-          <button className="btnSendMessage">SE1ND</button>
-        </form>
+        <form  className="formBlock" onSubmit={submitMessage} >
+        <TextField id="standard-basic" ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></TextField>
+        
+          {/*  <input ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></input> */}
 
-        <div className="textSpace">
-          {messageList.map((message, i) => <Message message={message} key={i}/>)}
+          <button className="btnSendMessage">SEND</button>
+        </form>
+        <div className="conversationalBlock">
+          <div className="chatsBlock">
+            {chatsList.map((chat, i) => <Chats chat={chat} key={`${i}-${Date.now()}`}/>)}
+          </div>
+          <div className="textSpace">
+            {messageList.map((message) => <Message message={message} key={message.id}/>)}
+          </div>
         </div>
+
         
       </div>
     </div>
