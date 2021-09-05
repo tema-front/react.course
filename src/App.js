@@ -14,7 +14,7 @@ function App() {
     'I\'m written on React', 
     'Leave me alone', 'Get away!', 
     'Finally, you have done this task',
-    'Tema wrote this homework for two days >:|'
+    'Tema wrote this homework'
   ];
 
   // список чатов
@@ -85,7 +85,7 @@ function App() {
         </form>
 
         <div className="conversationalBlock"> 
-
+          {/* Блок и генерация чатов в нём */}
           <div className="chatsBlock">
             {chatsList.map((chat, i) => <Chats chat={chat} key={`${i}-${Date.now()}`}/>)}
           </div>
