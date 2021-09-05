@@ -2,8 +2,8 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 import { Message } from './components/Message';
-import { Chats } from './components/Chats';
-import Input from '@material-ui/core/Input';
+import { Chats } from './components/Chats'; // компонент чатов
+import Input from '@material-ui/core/Input'; // для стилизации
 
 function App() {
 
@@ -17,6 +17,7 @@ function App() {
     'Tema wrote this homework for two days >:|'
   ];
 
+  // список чатов
   const chatsList = [
     'Bot',
     'John',
@@ -27,11 +28,6 @@ function App() {
 
   const timer = useRef()
   const inputRef = useRef()
-
-
-  useEffect(() => {
-    inputRef.current?.focus(); // Фокус на инпуте при рендере
-  }, [])
 
   useEffect(() => {
     if (messageList[messageList.length - 1]?.author === 'User') {
@@ -76,31 +72,30 @@ function App() {
       <div className="wrapperForm">
 
         <form autoComplete="off" className="formBlock" onSubmit={submitMessage}>
-        <Input 
-          inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
-          id="standard-basic" 
-          ref={inputRef}
-          className="inputMessage" 
-          placeholder="Message"
-          onChange={handleText} 
-          value={message}>  
-             
-        </Input>
-        
-           {/* <input autofocus ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></input> */}
-
+          <Input 
+            inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
+            id="standard-basic" 
+            ref={inputRef}
+            className="inputMessage" 
+            placeholder="Message"
+            onChange={handleText} 
+            value={message}>   
+          </Input>
           <button className="btnSendMessage">SEND</button>
         </form>
-        <div className="conversationalBlock">
+
+        <div className="conversationalBlock"> 
+
           <div className="chatsBlock">
             {chatsList.map((chat, i) => <Chats chat={chat} key={`${i}-${Date.now()}`}/>)}
           </div>
+
           <div className="textSpace">
             {messageList.map((message) => <Message message={message} key={message.id}/>)}
           </div>
+
         </div>
 
-        
       </div>
     </div>
   );
