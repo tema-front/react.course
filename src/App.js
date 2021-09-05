@@ -3,8 +3,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 import { Message } from './components/Message';
 import { Chats } from './components/Chats';
-
-import { TextField } from "@material-ui/core";
+import Input from '@material-ui/core/Input';
 
 function App() {
 
@@ -49,7 +48,7 @@ function App() {
       }
     } 
 
-  }, [messageList, answerBot])
+  }, [messageList])
 
   const handleText = (event) => { 
     setMessage(event.target.value) // Контролируемый input
@@ -58,7 +57,8 @@ function App() {
   
 
   const submitMessage = useCallback((event) => {
-    inputRef.current?.focus(); // Фокус на инпуте после клика
+    debugger
+    inputRef.current?.children[0].focus(); // Фокус на инпуте после клика
     event.preventDefault()
     setMessage('') // Отчищаю поле инпута при отправке формы
     // Добавляю в массив новое сообщение
@@ -75,10 +75,19 @@ function App() {
     <div className="App container"> 
       <div className="wrapperForm">
 
-        <form  className="formBlock" onSubmit={submitMessage} >
-        <TextField id="standard-basic" ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></TextField>
+        <form autoComplete="off" className="formBlock" onSubmit={submitMessage}>
+        <Input 
+          inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
+          id="standard-basic" 
+          ref={inputRef}
+          className="inputMessage" 
+          placeholder="Message"
+          onChange={handleText} 
+          value={message}>  
+             
+        </Input>
         
-          {/*  <input ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></input> */}
+           {/* <input autofocus ref={inputRef} className="inputMessage" label="message" onChange={handleText} value={message}></input> */}
 
           <button className="btnSendMessage">SEND</button>
         </form>

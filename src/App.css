@@ -75,17 +75,19 @@
 
 .btnSendMessage:active {
   background-color: rgb(214, 194, 168);
+  border: 0;
 }
 
 .inputMessage {
   margin: 0 auto;
   margin-bottom: 50px;
-  height: 100px;
+  height: 60px;
   width: 800px;
-  font-size: 62px;
+  /* font-size: 62px; */
   background-color: antiquewhite;
   border: 3px solid rgb(112, 91, 20);
   color: rgb(112, 91, 20);
+  padding: 7px;
 }
 
 .textSpace {
