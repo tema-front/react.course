@@ -113,29 +113,39 @@
 }
 
 .chatsBlock {
-  width: 110px;
+  margin-right: 20px;
+  margin-top: 50px;
+}
+
+.chatsList {
+  min-width: 157px;
   background-color: antiquewhite;
   box-sizing: border-box;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-bottom: 50px;
-  margin-right: 20px;
   border: 3px solid rgb(112, 91, 20);
   padding: 7px;
-  max-height: 500px;
+  min-height: 500px;
+}
+
+.homePageContainer {
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .chatItem {
-  width: 88px;
-  color: rgb(112, 91, 20);
-  font-size: 20px;
-  background-color: antiquewhite;
-  border: 3px solid rgb(112, 91, 20);
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: space-between;
 }
 
-.chatItem:hover {
-  background-color: rgb(236, 218, 195);
+.chatRemoveBtn {
+  margin-left: 5px;
 }
 
-.chatItem:active {
-  background-color: rgb(240, 208, 167);
+.chatLink {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }

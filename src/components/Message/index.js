@@ -1,10 +1,11 @@
-import '../../App.css'
+import { useEffect } from 'react';
+import '../../style/App.css'
 
-export const Message = (props) => {
+export const Message = ({ messageList }) => {
 
     return (
-        <p className="message"> 
-            {props.message.author}: {props.message.text}
-        </p>
+        <div className="textSpace">
+            {messageList?.map((message, i) => <p className="message" key={i}>{message.text}</p>)}
+        </div>
     )
 };  
