@@ -6,9 +6,8 @@ export const HomePage = () => {
     return (
         <div className='homePageContainer'>
             <h1 className='headerHomePage'>Home Page</h1>
-            <MyButton><Link to={`/chats/`}>Чаты</Link></MyButton>
-            <MyButton><Link to={`/profile/`}>Профиль</Link></MyButton>
-
+            <Link to={`/chats/`}><MyButton>Чаты</MyButton></Link>
+           <Link to={`/profile/`}><MyButton>Профиль</MyButton></Link>
         </div>
     );
 }

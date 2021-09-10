@@ -13,7 +13,6 @@ export const FormMessage = ({ onSubmit }) => {
     const { chatId } = useParams()
 
     const submitMessage = (event) => {
-      debugger
         event.preventDefault()
         if (chatId) onSubmit(message);
         setMessage('');
@@ -42,7 +41,7 @@ export const FormMessage = ({ onSubmit }) => {
             onChange={handleText} 
             value={message}>   
           </Input>}
-          
+
         <button className="btnSendMessage">SEND</button>
       </form>
     );
