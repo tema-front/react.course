@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import '../../style/App.css'
 
 export const Message = ({ messageList }) => {

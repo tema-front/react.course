@@ -42,7 +42,7 @@ export const ChatsList = ({chats, onAddChat, onRemoveChat}) => {
                             Но кнопки у меня имеют уникальный ключ.
                             В чём здесь проблема?
                         */}
-                        <MyButton key={'remove-' + chat.id} style={{ minWidth: '27px', minHeight: '27px', fontSize: '14px'}} 
+                        <MyButton key={'remove-' + chat.id} style={{ marginTop: '12px', minWidth: '27px', minHeight: '27px', maxHeight: '27px',fontSize: '14px'}} 
                             onClick={() => removeChat(chat.id)} >X
                         </MyButton>
 

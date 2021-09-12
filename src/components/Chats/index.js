@@ -35,9 +35,7 @@ export const Chats = () => {
   );
 
   useEffect(() => {
-
     const currentMessage = messagesList[chatId];
-
     if (Boolean(chatId) && currentMessage?.[currentMessage.length - 1]?.author === AUTHORS.USER) {
       timer.current = setTimeout(() => {
         addMessage({
@@ -60,7 +58,7 @@ export const Chats = () => {
         });
       } else alert('choose chat')
     },
-    [chatId, addMessage]
+    [chatId, addMessage, messagesList]
   )
 
   const makeNewChat = useCallback(() => {
@@ -72,16 +70,16 @@ export const Chats = () => {
     setMessagesList(prevMessagesList => ({
       ...prevMessagesList, [`chat-${(chats.length + 1)}`]: []
     }))
-  })
+  }, [chats])
 
   const removeChat = useCallback((chatRemove) => {
     // Удаляю свойство объекта по ключу chatRemove
     delete messagesList[chatRemove]
     setMessagesList(messagesList)
     // Отбрасываю удаляемый чат из списка чатов
-    let newChat = chats.filter(chat => {if (chat.id !== chatRemove) return chat})
+    let newChat = chats.filter(chat => chat.id !== chatRemove)
     setChats(newChat)
-  })
+  }, [chats, messagesList])
 
 
   return (
