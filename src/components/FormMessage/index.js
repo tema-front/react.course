@@ -1,28 +1,25 @@
 import React, { useState, useRef} from 'react'
 import { useParams } from "react-router-dom";
-
-import Input from '@material-ui/core/Input'; // для стилизации
+import Input from '@material-ui/core/Input'; 
 
 export const FormMessage = ({ onSubmit }) => {
     const inputRef = useRef()
     const [message, setMessage] = useState('');
 
     const handleText = (event) => { 
-        setMessage(event.target.value) // Контролируемый input
+        setMessage(event.target.value) 
     }
     const { chatId } = useParams()
-
     const submitMessage = (event) => {
         event.preventDefault()
         if (chatId) onSubmit(message);
         setMessage('');
-        inputRef.current?.focus(); // Фокус на инпуте после клика
+        inputRef.current?.focus(); 
     }
 
     return (
         <form autoComplete="off" className="formBlock" onSubmit={submitMessage}>
-
-          {!chatId && <Input 
+            {(!chatId || false) && <Input 
             inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
             id="standard-basic" 
             inputRef={inputRef}
@@ -32,7 +29,7 @@ export const FormMessage = ({ onSubmit }) => {
             value={'Выберите чат'}>   
           </Input>}
 
-          {chatId && <Input 
+          {(chatId && true) && <Input 
             inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
             id="standard-basic" 
             inputRef={inputRef}

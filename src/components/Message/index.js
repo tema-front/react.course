@@ -1,10 +1,11 @@
 import '../../style/App.css'
 
-export const Message = ({ messageList }) => {
-
+export const Message = ({ messagesList }) => {
+    debugger
+    console.log(messagesList);
     return (
         <div className="textSpace">
-            {messageList?.map((message, i) => <p className="message" key={i}>{message.text}</p>)}
+            {messagesList?.map((message, i) => <p className="message" key={i}>{message.author}: {message.text}</p>)}
         </div>
     )
 };  

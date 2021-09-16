@@ -1,47 +1,56 @@
-import React from 'react';
-import { Link, useParams, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { MyButton } from '../UI/button/MyButton';
 
 export const ChatsList = ({chats, onAddChat, onRemoveChat}) => {
 
+    const history = useHistory()
     const addNewChat = () => {
-        // Вызываю функцию в родителе Chats на добавление чата
-        onAddChat()
+        onAddChat(nameNewChat)
     }
+
+    const [windowAddChat, setWindowAddChat] = useState(false)
+    const [nameNewChat, setNameNewChat] = useState('')
+
+    const addNewChatWindow = (event) => {
+        if (event.target.innerText === 'Add Chat') event.target.innerText = 'Add'
+        else {
+            if (!nameNewChat) return
+            addNewChat()
+            setNameNewChat('')
+            event.target.innerText = 'Add Chat'
+        } 
+        setWindowAddChat(!windowAddChat)
+    }
+
     const { chatId } = useParams()
 
     const removeChat = (chatRemove) => {
-        // Вызываю функцию в родителе Chats и передаю id удаляемого чата, чтобы удалить его
         onRemoveChat(chatRemove)
-
-        // Идея такая: если мы удаляем чат, который у нас открыт, то он закрывается
-        // Но реализация идеи не работает)
-        // При истине редирект не отрабатывает
-        // В чём проблема?
         if (chatRemove === chatId) {
-            return (
-                <Redirect to="/chats" />
-            )
+            history.push('/chats')
         }
     }
 
     return (
         <div className="chatsBlock"> 
-            {/* Кнопка, чтобы добавить новый чат */}
-            <MyButton style={{ width: '100%'}} onClick={addNewChat}>Add Chat</MyButton>
+
+            {/* <MyButton style={{ width: '100%'}} onClick={addNewChat}>Add Chat</MyButton> */}
+            <MyButton style={{ width: '100%'}} onClick={addNewChatWindow}>Add Chat</MyButton>
+            {windowAddChat && 
+                <div className="addNewChatBlock">
+                    <input placeholder="Name chat" value={nameNewChat} onChange={(event) => setNameNewChat(event.target.value)} className='nameNewChat'></input>
+                </div>
+            }
+
 
             <div className="chatsList">
                 {chats?.map(chat => 
-                    <div className='chatItem'>
-                        {/* Кнопки  чата */}
+                    <div className='chatItem' key={`owner-chat-item-${chat.id}`}>
+
                         <Link className='chatLink' to={`/chats/${chat.id}`}><MyButton key={chat.id}>{chat.name}</MyButton></Link>
 
-                        {/* Кнопки удаления чата 
-
-                            Кнопки работают, но ругается реакт, говоря, что каждый дочерний элемент должен иметь уникальный ключ,
-                            Но кнопки у меня имеют уникальный ключ.
-                            В чём здесь проблема?
-                        */}
                         <MyButton key={'remove-' + chat.id} style={{ marginTop: '12px', minWidth: '27px', minHeight: '27px', maxHeight: '27px',fontSize: '14px'}} 
                             onClick={() => removeChat(chat.id)} >X
                         </MyButton>
