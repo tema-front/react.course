@@ -11,6 +11,7 @@ function App() {
   const changeTheme = useCallback(() => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
   }, [])
+  
   return (
     <Provider store={store}>
       <ThemeContext.Provider value={{ theme, changeTheme }}>

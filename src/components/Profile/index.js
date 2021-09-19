@@ -2,14 +2,12 @@ import React, { useContext, useState } from 'react';
 import ThemeContext from '../../utils/ThemeContext'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeProfileName, toggleShowName } from '../../store/profile/actions'
-
-
+import { getBooleanShowName, getProfileName } from '../../store/profile/selectors';
 
 export const Profile = () => {
-    const contextValue = useContext(ThemeContext)
-    debugger
-    const showName = useSelector((state) => state.storeProfile.showName)
-    const profile_name = useSelector((state) => state.storeProfile.profileName)
+    const contextValue = useContext(ThemeContext);
+    const showName = useSelector(getBooleanShowName);
+    const profile_name = useSelector(getProfileName);
 
     const dispatch = useDispatch()
     const [profileName, setProfileName] = useState('')
