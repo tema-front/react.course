@@ -1,0 +1,16 @@
+.myBtn {
+  min-width: 88px;
+  color: rgb(148, 108, 0);
+  font-size: 20px;
+  background-color: antiquewhite;
+  border: 3px solid rgb(148, 108, 0);
+  cursor: pointer;
+}
+
+.myBtn:hover {
+  background-color: rgb(236, 218, 195);
+}
+
+.myBtn:active {
+  background-color: rgb(240, 208, 167);
+}
