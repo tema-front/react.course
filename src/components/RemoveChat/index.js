@@ -12,6 +12,7 @@ export const RemoveChat = ({ chatIdRemove }) => {
 
     const removeChat = () => {
         dispatch(deleteChat(chatIdRemove))
+        
         if (chatIdRemove === chatId) {
             history.push('/chats')
         }

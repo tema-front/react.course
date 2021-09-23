@@ -36,8 +36,9 @@ export const messagesReducer = (state = initialState, {type, payload}) => {
         }
         
         case REMOVE_CHAT : { 
-            const newMessagesList = {...state.messagesList}
             delete state.messagesList[payload];
+            const newMessagesList = {...state.messagesList}
+
 
             return {
                 ...state,

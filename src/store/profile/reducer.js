@@ -15,7 +15,6 @@ export const profileReducer = (state = initialState, {type, payload}) => {
         }
         
         case CHANGE_PROFILE_NAME: {
-            debugger
             return {
                 ...state,
                 profileName: payload

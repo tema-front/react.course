@@ -13,6 +13,7 @@ export const FormMessage = ({ onSubmit }) => {
     const chats = useSelector(getChatList);
 
     useEffect(() => {
+      // Проверка, существует ли чат с ID из url, если нет, то инпут ввода сообещия делается disabled
       if (chats.find(chat => chat.id === chatId)) setIsChatIdToList(true)
       else setIsChatIdToList(false)
     }, [chatId])
@@ -29,26 +30,26 @@ export const FormMessage = ({ onSubmit }) => {
     }
 
     return (
-        <form autoComplete="off" className="formBlock" onSubmit={submitMessage}>
-            {!isChatIdToList && <Input 
-            inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
-            id="standard-basic" 
-            inputRef={inputRef}
-            className="inputMessage" 
-            placeholder="Message"
-            disabled
-            value={'Выберите чат'}>   
-          </Input>}
+      <form autoComplete="off" className="formBlock" onSubmit={submitMessage}>
+          {!isChatIdToList && <Input 
+          inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
+          id="standard-basic" 
+          inputRef={inputRef}
+          className="inputMessage" 
+          placeholder="Message"
+          disabled
+          value={'Выберите чат'}>   
+        </Input>}
 
-          {isChatIdToList && <Input 
-            inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
-            id="standard-basic" 
-            inputRef={inputRef}
-            className="inputMessage" 
-            placeholder="Message"
-            onChange={handleText} 
-            value={message}>   
-          </Input>}
+        {isChatIdToList && <Input 
+          inputProps={{ 'aria-label': 'description', 'fontSize': '66px', 'padding': '7px', 'autoFocus': true, 'color': 'rgb(112, 91, 20)' }}  
+          id="standard-basic" 
+          inputRef={inputRef}
+          className="inputMessage" 
+          placeholder="Message"
+          onChange={handleText} 
+          value={message}>   
+        </Input>}
 
         <button className="btnSendMessage">SEND</button>
       </form>

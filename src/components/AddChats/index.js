@@ -19,7 +19,6 @@ export const AddChat = () => {
         setWindowAddChat(!windowAddChat)
     }
 
-
     return (
         <div>
             <MyButton style={{ width: '100%'}} onClick={addChatWindow}>Add Chat</MyButton>
@@ -36,4 +35,3 @@ export const AddChat = () => {
         </div>
     );
 }
-

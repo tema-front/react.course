@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Provider } from 'react-redux'
-import store from './store'
+import store, { persistor } from './store'
 import { Routes } from './components/Routes';
 import './style/App.css';
 import ThemeContext from './utils/ThemeContext'
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -13,10 +14,12 @@ function App() {
   }, [])
   
   return (
-    <Provider store={store}>
-      <ThemeContext.Provider value={{ theme, changeTheme }}>
-        <Routes />  
-      </ThemeContext.Provider >
+    <Provider store={store} >
+      <PersistGate persistor={persistor}>
+        <ThemeContext.Provider value={{ theme, changeTheme }}>
+          <Routes />  
+        </ThemeContext.Provider >
+      </ PersistGate>
     </Provider>
   );
 }

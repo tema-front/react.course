@@ -11,7 +11,7 @@ export const Routes = () => {
             <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/chats/:chatId?" component={Chats} />
-                <Route path="/profile/" component={Profile} /> {/* Страница профиля */}     
+                <Route path="/profile/" component={Profile} />
                 <Route component={NotFound} />
             </Switch>
         </BrowserRouter>
