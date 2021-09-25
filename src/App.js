@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from 'react';
+import { Provider } from 'react-redux'
+import store, { persistor } from './store'
+import { Routes } from './components/Routes';
+import './style/App.css';
+import ThemeContext from './utils/ThemeContext'
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
+  const [theme, setTheme] = useState('light')
+
+  const changeTheme = useCallback(() => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store} >
+      <PersistGate persistor={persistor}>
+        <ThemeContext.Provider value={{ theme, changeTheme }}>
+          <Routes />  
+        </ThemeContext.Provider >
+      </ PersistGate>
+    </Provider>
   );
 }
 

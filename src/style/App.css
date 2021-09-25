@@ -1,0 +1,224 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: #643e3e;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 66px;
+  box-sizing: border-box;
+  font-size: calc(10px + 2vmin);
+}
+
+.wrapperForm {
+  margin-top: 100px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.formBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnSendMessage {
+  width: 250px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: antiquewhite;
+  border: 3px solid rgb(112, 91, 20);
+  font-size: 42px;
+  color: rgb(112, 91, 20);
+}
+
+.btnSendMessage:active {
+  background-color: rgb(214, 194, 168);
+  border: 0;
+}
+
+.inputMessage {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  height: 60px;
+  width: 800px;
+  /* font-size: 62px; */
+  background-color: antiquewhite;
+  border: 3px solid rgb(112, 91, 20);
+  color: rgb(112, 91, 20);
+  padding: 7px;
+}
+
+.textSpace {
+  width: 1000px;
+  min-height: 500px;
+  border: 3px solid rgb(112, 91, 20);
+  background-color: antiquewhite;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  text-align: left;
+  color: rgb(112, 91, 20);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.message {
+  margin: 0;
+}
+
+.conversationalBlock {
+  display: flex;
+}
+
+.chatsBlock {
+  margin-right: 20px;
+  margin-top: 41px;
+}
+
+.chatsList {
+  min-width: 157px;
+  background-color: antiquewhite;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  border: 3px solid rgb(112, 91, 20);
+  padding: 7px;
+  min-height: 500px;
+}
+
+.homePageContainer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.chatItem {
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
+
+.chatRemoveBtn {
+  margin-left: 5px;
+}
+
+.chatLink {
+  display: block;
+  box-sizing: border-box;
+}
+
+.addNewChatBlock {
+  max-width: 141px;
+  padding: 5px;
+  background-color: antiquewhite;
+  border: 3px solid rgb(112, 91, 20);
+}
+
+.nameNewChat {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: antiquewhite;
+  border: 3px solid rgb(112, 91, 20);
+  color: rgb(112, 91, 20);
+  font-size: 16px;
+  height: 35px;
+  padding: 3px;
+}
+
+.containerNews {
+  padding-top: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.headerNews {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 43px;
+}
+
+.textColor {
+  color: antiquewhite;
+}
+
+.headerUnderLine {
+  height: 3px;
+  border: 0;
+  background-color: rgb(112, 91, 20);
+}
+
+.itemArticle {
+  color: antiquewhite;
+  font-size: 20px;
+}
+
+.itemLi {
+  color: rgb(112, 91, 20);
+}
+
+.contentNews {
+  margin-top: 75px;
+}
+
+.headerAndProgress {
+  position: relative;
+}
+
+.circularProgress {
+  position: absolute;
+  color: #fff;
+  top: 5px;
+  left: 670px;
+}
+
+.errorNewsContent {
+  color: antiquewhite;
+  font-size: 20px;
+  font-family: sans-serif;
+  max-width: 460px;
+  line-height: 35px;
+}
+
+.refreshNewsBtn {
+  padding: 20px 30px;
+  box-sizing: border-box;
+  font-size: 30px;
+  color: antiquewhite;
+  background-color: rgb(112, 91, 20);
+  border: 3px solid antiquewhite;
+}
+
+.refreshNewsBtn:active {
+  border: 3px solid rgb(112, 91, 20);
+  font-size: 31px;
+}
+
+/* .pageNav:nth-child(1) {
+  margin-right: 15px;
+} */
+
+.pageNav > a > button {
+  margin-right: 15px;
+}
