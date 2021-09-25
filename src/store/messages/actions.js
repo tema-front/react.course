@@ -1,7 +1,5 @@
-
-
 import store from ".."
-import { AUTHORS } from "../../utils/constants"
+import { CONSTANTS } from "../../utils/constants"
 
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE'
 export const REMOVE_MESSAGE = 'MESSAGES::REMOVE_MESSAGE'
@@ -27,7 +25,7 @@ let timeoutBot;
 
 export const addMessageWithReply = (chatId, text, author) => (dispatch) => {
     dispatch(addMessage(chatId, text, author))
-    if (author === AUTHORS.USER) {
+    if (author === CONSTANTS.USER) {
         clearTimeout(timeoutBot)
         timeoutBot = setTimeout(() => {
             // Моя реализация бота чуть сложнее т.к автор у бота - это название чата
@@ -35,7 +33,7 @@ export const addMessageWithReply = (chatId, text, author) => (dispatch) => {
             let currentChatName = (chats.filter(chat => chat.id === chatId))[0];
             dispatch(addMessage (
                 chatId,
-                AUTHORS.ANSWERBOT[Math.floor(Math.random() * (11 - 0)) + 0],
+                CONSTANTS.ANSWERBOT[Math.floor(Math.random() * (11 - 0)) + 0],
                 currentChatName.name
             ));
       }, 1500);

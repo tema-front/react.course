@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-#root {
-  background-color: #282c34;
+body {
+  background-color: #643e3e;
 }
 
 .App-header {
@@ -21,16 +21,12 @@
 }
 
 .container {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   padding-top: 66px;
   box-sizing: border-box;
   font-size: calc(10px + 2vmin);
-  color: yellow;
 }
 
 .wrapperForm {
@@ -148,4 +144,81 @@
   font-size: 16px;
   height: 35px;
   padding: 3px;
+}
+
+.containerNews {
+  padding-top: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.headerNews {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 43px;
+}
+
+.textColor {
+  color: antiquewhite;
+}
+
+.headerUnderLine {
+  height: 3px;
+  border: 0;
+  background-color: rgb(112, 91, 20);
+}
+
+.itemArticle {
+  color: antiquewhite;
+  font-size: 20px;
+}
+
+.itemLi {
+  color: rgb(112, 91, 20);
+}
+
+.contentNews {
+  margin-top: 75px;
+}
+
+.headerAndProgress {
+  position: relative;
+}
+
+.circularProgress {
+  position: absolute;
+  color: #fff;
+  top: 5px;
+  left: 670px;
+}
+
+.errorNewsContent {
+  color: antiquewhite;
+  font-size: 20px;
+  font-family: sans-serif;
+  max-width: 460px;
+  line-height: 35px;
+}
+
+.refreshNewsBtn {
+  padding: 20px 30px;
+  box-sizing: border-box;
+  font-size: 30px;
+  color: antiquewhite;
+  background-color: rgb(112, 91, 20);
+  border: 3px solid antiquewhite;
+}
+
+.refreshNewsBtn:active {
+  border: 3px solid rgb(112, 91, 20);
+  font-size: 31px;
+}
+
+/* .pageNav:nth-child(1) {
+  margin-right: 15px;
+} */
+
+.pageNav > a > button {
+  margin-right: 15px;
 }

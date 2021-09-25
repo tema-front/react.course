@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Message } from "../Message";
-import { AUTHORS } from "../../utils/constants";
+import { CONSTANTS } from "../../utils/constants";
 import { FormMessage } from "../FormMessage";
 import { ChatsList } from "../ChatsList";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +25,7 @@ export const Chats = () => {
   const handleAddMessage = useCallback(
     (text) => {
       if (messagesList[chatId] || []) {
-        addMessageToList(text, AUTHORS.USER);
+        addMessageToList(text, CONSTANTS.USER);
       }
     },
     [chatId, addMessageToList, messagesList]
