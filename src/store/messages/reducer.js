@@ -1,5 +1,5 @@
 import { REMOVE_CHAT } from "../chats/actions"
-import { ADD_MESSAGE, REMOVE_MESSAGE } from "./actions"
+import { ADD_MESSAGE, REMOVE_MESSAGE, SET_MESSAGES } from "./actions"
 
 
 const initialState = {
@@ -43,6 +43,15 @@ export const messagesReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 messagesList: newMessagesList
+            }
+        }
+
+        case SET_MESSAGES : { 
+            debugger
+            console.log(payload);
+            return {
+                ...state,
+                messagesList: payload
             }
         }
 

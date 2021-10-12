@@ -5,17 +5,19 @@ import { AddChat } from '../AddChats';
 import { RemoveChat } from '../RemoveChat';
 import { Link } from 'react-router-dom';
 import { MyButton } from '../UI/button/MyButton';
+import { useSelector } from 'react-redux';
+import { getChatList } from '../../store/chats/selectors';
 
 export const ChatsList = () => {
-    const [chats, setChats] = useState([])
+    const chats = useSelector(getChatList)
 
-    useEffect(() => {
-        const chatDBref = ref(db, 'chats')
-        onValue(chatDBref, (snapshot) => {
-            const data = snapshot.val();
-            setChats(Object.values(data || {}));
-        })
-    }, [])
+    // useEffect(() => {
+    //     const chatDBref = ref(db, 'chats')
+    //     onValue(chatDBref, (snapshot) => {
+    //         const data = snapshot.val();
+    //         setChats(Object.values(data || {}));
+    //     })
+    // }, [])
 
 
     return (

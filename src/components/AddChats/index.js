@@ -4,23 +4,20 @@ import { ref, set } from 'firebase/database'
 import { db } from '../../services/firebase'
 // import { addChat } from "../../store/chats/actions";
 import { MyButton } from "../UI/button/MyButton";
+import { addChatFb } from '../../store/chats/actions';
+import { useDispatch } from 'react-redux';
 
 export const AddChat = () => {
     const [windowAddChat, setWindowAddChat] = useState(false)
     const [nameNewChat, setNameNewChat] = useState('')
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const addChatWindow = (event) => {
         if (event.target.innerText === 'Add Chat') event.target.innerText = 'Add'
         else {
+            debugger
             if (!nameNewChat) return
-            const newId = `chat-${Date.now()}`;
-            const chatDBref = ref(db, `chats/${newId}`)
-
-            set(chatDBref, {
-                id: newId,
-                name: nameNewChat
-            })
+            dispatch(addChatFb(nameNewChat))
             setNameNewChat('')
             event.target.innerText = 'Add Chat'
         } 
