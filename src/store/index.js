@@ -10,7 +10,7 @@ import { articlesReducer } from './articles/reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['storeMessages', 'storeArticles']
+    blacklist: ['storeMessages', 'storeChats', 'storeArticles', 'storeProfile']
 }
 
 const rootReducer = combineReducers({
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
-
+ 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(

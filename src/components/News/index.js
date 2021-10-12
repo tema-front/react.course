@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import { CircularProgress } from '@material-ui/core/';
 import { useDispatch, useSelector } from "react-redux";
 import { getArticlesList, getArticlesError, getArticlesLoading } from "../../store/articles/selectors";
 import { requestArticlesData } from "../../store/articles/actions";
+import { Header } from "../Header";
 
 export const News = () => {
     const dispatch = useDispatch()
@@ -14,10 +14,7 @@ export const News = () => {
         dispatch(requestArticlesData())
     }
 
-    // Я реализовал пагинированную подгрузку новостей 
-    // Сначала подписываемся на скролл и изменение экрана
     useEffect(() => {
-        // Сразу вопрос, я вообще в правильное место засунул подписки?
         window.addEventListener("scroll", checkTimer)
         window.addEventListener("resize", checkTimer)
         reload()
@@ -28,52 +25,33 @@ export const News = () => {
         })
     }, [])
     
-    // При скролле срабатывает функция.
-    // В ней я исскуственно притормаживаю вызов мидлвара для подгрузки постов
-    // Это нужно, чтобы не стакались вызовы мидлвара на каждый пиксель прокрутки скролла)
-    // Насколько правильно использовать интервалы для этой реализации? 
     let timer
     const checkTimer = () => {
         clearTimeout(timer)
 
         timer = setTimeout(() => {
-            // Вызываю отслеживание положения на странице
             checkPosition()
         }, 100)
     }
 
-    // Отслеживание положения на странице и вызов мидлвара
     const checkPosition = () => {
-        // Нам потребуется знать высоту документа и высоту экрана.
         const height = document.body.offsetHeight
         const screenHeight = window.innerHeight
-      
-        // Записываем, сколько пикселей пользователь уже проскроллил.
         const scrolled = window.scrollY
-      
-        // Обозначим порог, по приближении к которому
-        // будем вызывать подгрузку новых новостей.
-        // В нашем случае — треть экрана до конца страницы.
         const threshold = height - screenHeight / 3
       
-        // Отслеживаем, где находится низ экрана относительно страницы.
         const position = scrolled + screenHeight
       
-        // Если мы пересекли полосу-порог, подгружаем ещё данные.
         if (position >= threshold) {
             dispatch(requestArticlesData())
         }
     }
 
     return (
-        <div className='containerNews'>
-            <hr className='headerUnderLine' /> 
-            <div className='headerAndProgress'>
-                <h2 className='headerNews textColor'>News</h2>
-                {loading && <CircularProgress className='circularProgress'/>}
-            </div> 
+        <div className='container'>
 
-            <hr className='headerUnderLine' />
+            <Header headerName='News' loading={loading} />
+
             <div className='contentNews'>
                 {error ? (       
                         <>

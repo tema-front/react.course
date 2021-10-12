@@ -1,45 +1,50 @@
-import React, { useContext, useState } from 'react';
-import ThemeContext from '../../utils/ThemeContext'
-import { useSelector, useDispatch } from 'react-redux'
-import { changeProfileName, toggleShowName } from '../../store/profile/actions'
-import { getBooleanShowName, getProfileName } from '../../store/profile/selectors';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+// ref - получение БД, set - запись в раздел БД, onValue - подписка на изменение состояния 
+import { ref, onValue } from 'firebase/database'
+import { getProfileName, getAuthedProfile } from '../../store/profile/selectors';
+import { Header } from '../Header';
+import { AuthenticationProfile } from '../AuthenticationProfile';
+import { db } from '../../services/firebase'
+import { changeProfileName } from '../../store/profile/actions';
 
 export const Profile = () => {
-    const contextValue = useContext(ThemeContext);
-    const showName = useSelector(getBooleanShowName);
-    const profile_name = useSelector(getProfileName);
-
+    const userName = useSelector(getProfileName);
+    const authedProfile = useSelector(getAuthedProfile)
     const dispatch = useDispatch()
-    const [profileName, setProfileName] = useState('')
-     
-    const handleClick = () => {
-        dispatch(toggleShowName)
-        dispatch(changeProfileName(profileName))
-        setProfileName('')
+
+    const getHeaderName = () => {
+        if (userName === 'User') return 'Profile' 
+        else return `${userName}`
     }
 
+    useEffect(() => {
+        const userDBref = ref(db, 'users');
+        const subscribe = onValue(userDBref, (snapshot) => {
+            const data = snapshot.val();
+            console.log('--------', data);
+            dispatch(changeProfileName(data?.characterName || ''));
+        })
+
+        return subscribe;
+    }, [])
+
     return (
-        <div>
-            <h1 style={{color: contextValue.theme === 'light' ? 'red' : 'green '}}>Profile</h1>
-            <button onClick={contextValue.changeTheme}>Изменить тему</button>
-            <input 
-                type="checkbox"
-                checked={showName}
-                value={showName}
-                onChange={handleClick}
-            />
-
-            <input 
-                type="value"
-                checked={showName}
-                value={profileName}
-                onChange={(event) => {setProfileName(event.target.value)}}
-                placeholder='Name'
-            />
-
-            <button onClick={handleClick}>Show Name</button>
-            {showName && <div>Hello, {profile_name}!</div>}
-
+        <div className='container'>
+            {authedProfile ? <Header headerName={getHeaderName()} logout={true} /> 
+            : <Header headerName={getHeaderName()} logout={false} />
+            }
+            
+            <div className='contentProfile'>
+                <div className='infoProfile'>
+                    <span className='infoProfileText textColor'>
+                        На этой странице Вы можете войти в свой профиль или зарегистрировать аккаунт.
+                        Благодаря авторизации на нашем сайте, Вы сможете получить доступ к новостной ленте и к чатам,
+                        где сможете обмениваться сообщениями с людьми 
+                    </span>
+                </div>
+                <AuthenticationProfile />
+            </div>
         </div>
     );
 }

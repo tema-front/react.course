@@ -1,23 +1,32 @@
-import { TOGGLE_SHOW_NAME, CHANGE_PROFILE_NAME }  from './actions'
+import { LOGIN_PROFILE, LOGOUT_PROFILE, CHANGE_PROFILE_NAME }  from './actions'
 
 const initialState = {
-    showName: false,
-    profileName: 'default'
+    profileName: 'User',
+    authedProfile: false
 }
 
 export const profileReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case TOGGLE_SHOW_NAME: {
+        case LOGIN_PROFILE: {
             return {
                 ...state,
-                showName: !state.showName
+                authedProfile: true
+            }
+        }
+
+        case LOGOUT_PROFILE: {
+            return {
+                ...state,
+                authedProfile: false
             }
         }
         
         case CHANGE_PROFILE_NAME: {
+
             return {
                 ...state,
-                profileName: payload
+                profileName: payload,
+                authedProfile: true
             }
         }
 

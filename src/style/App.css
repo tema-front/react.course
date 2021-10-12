@@ -23,18 +23,15 @@ body {
 .container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  padding-top: 66px;
+  margin: 0 auto;
+  margin-top: 30px;
   box-sizing: border-box;
-  font-size: calc(10px + 2vmin);
+  max-width: 1200px;
+  flex-direction: column;
 }
 
-.wrapperForm {
-  margin-top: 100px;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+.containerChats {
+  font-size: calc(10px + 2vmin);
 }
 
 .formBlock {
@@ -89,6 +86,7 @@ body {
 
 .conversationalBlock {
   display: flex;
+  margin-bottom: 150px;
 }
 
 .chatsBlock {
@@ -110,6 +108,7 @@ body {
 .homePageContainer {
   width: 1200px;
   margin: 0 auto;
+  margin-top: 30px;
 }
 
 .chatItem {
@@ -146,12 +145,6 @@ body {
   padding: 3px;
 }
 
-.containerNews {
-  padding-top: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .headerNews {
   text-align: center;
   text-transform: uppercase;
@@ -182,7 +175,8 @@ body {
   margin-top: 75px;
 }
 
-.headerAndProgress {
+.headerContent {
+  display: flex;
   position: relative;
 }
 
@@ -215,10 +209,59 @@ body {
   font-size: 31px;
 }
 
-/* .pageNav:nth-child(1) {
-  margin-right: 15px;
-} */
-
 .pageNav > a > button {
   margin-right: 15px;
+}
+
+.chatsHDR {
+  margin-bottom: 50px;
+}
+
+.contentProfile {
+  justify-content: space-between;
+}
+
+.contentNews {
+  margin-top: 10px;
+}
+
+.contentProfile {
+  display: flex;
+}
+
+.infoProfile {
+  max-width: 500px;
+  font-size: 20px;
+}
+
+.loginAndRegister {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+}
+
+.loginProfile {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  color: rgb(148, 108, 0);
+  background-color: antiquewhite;
+  border: 3px solid rgb(148, 108, 0);
+  border-radius: 10px;
+}
+
+.datasLoginProfile {
+  background-color: antiquewhite;
+  background-color: rgb(250, 220, 181);
+  border: 3px solid rgb(112, 91, 20);
+  color: rgb(112, 91, 20);
+  padding: 7px;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-size: 20px;
+}
+
+.btnLoginOrRegister {
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
